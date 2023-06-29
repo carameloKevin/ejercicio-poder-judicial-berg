@@ -12,8 +12,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
 
-
-import com.example.application.Domicilio;
 @Entity
 @Table(name = "edificio")
 
@@ -21,9 +19,11 @@ public class Edificio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String nombre;
     
-    @OneToOne(mappedBy = "edificio", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "domicilio_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Domicilio domicilio;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
@@ -31,7 +31,6 @@ public class Edificio {
     private List<Dependecia> dependencia;
 
 
-    
     public Edificio (String nombre, Domicilio domicilio){
         this.nombre = nombre;
         this.domicilio = domicilio;

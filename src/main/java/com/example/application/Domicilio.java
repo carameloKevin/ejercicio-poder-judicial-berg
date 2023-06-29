@@ -1,12 +1,12 @@
 package com.example.application;
 
-import com.vaadin.flow.component.template.Id;
+import jakarta.persistence.Id;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -20,8 +20,7 @@ public class Domicilio {
     private String ciudad;
     private int numero;
 
-    @JoinColumn(name = "edificio_id");
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "domicilio", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     private Edificio edificio;
 
     public Domicilio(String ciudad, String calle, int numero){
