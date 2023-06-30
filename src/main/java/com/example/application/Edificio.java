@@ -22,8 +22,11 @@ public class Edificio {
 
     private String nombre;
     
-    @JoinColumn(name = "domicilio_id")
-    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "domicilio_calle", referencedColumnName="calle")
+    @JoinColumn(name = "domicilio_numero", referencedColumnName="numero")
+    @JoinColumn(name = "domicilio_ciudad", referencedColumnName="ciudad")
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Domicilio domicilio;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)

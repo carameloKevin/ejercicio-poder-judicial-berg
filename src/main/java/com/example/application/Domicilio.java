@@ -18,12 +18,12 @@ public class Domicilio {
     private long id;
     private String calle;
     private String ciudad;
-    private int numero;
+    private String numero;
 
     @OneToOne(mappedBy = "domicilio", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     private Edificio edificio;
 
-    public Domicilio(String ciudad, String calle, int numero){
+    public Domicilio(String ciudad, String calle, String numero){
         this.ciudad = ciudad;
         this.calle = calle;
         this.numero = numero;
@@ -55,11 +55,11 @@ public class Domicilio {
         this.ciudad = ciudad;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
