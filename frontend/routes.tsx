@@ -1,5 +1,6 @@
 import { createBrowserRouter, IndexRouteObject, NonIndexRouteObject, useMatches } from 'react-router-dom';
 import { IndexView } from './views';
+import { EdificioView } from './views/edificio';  // Dejar unido a IndexView
 
 export type MenuProps = Readonly<{
   icon?: string;
@@ -29,6 +30,7 @@ export const routes: readonly ViewRouteObject[] = [
   {
     children: [
       { path: '/', element: <IndexView />, handle: { icon: 'globe-solid', title: 'Edificios Judiciales' } },
+      { path: '/:edificio', element:<EdificioView />, handle: { icon: 'globe-solid', title: 'Edificios Judiciales' }}
     ],
   },
 ];

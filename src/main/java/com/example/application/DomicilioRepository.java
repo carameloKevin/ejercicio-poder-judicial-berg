@@ -2,6 +2,8 @@ package com.example.application;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DomicilioRepository extends JpaRepository<Domicilio, Long>{
+import com.example.application.DomicilioId;
+
+public interface DomicilioRepository extends JpaRepository<Domicilio, DomicilioId>{
     
 }

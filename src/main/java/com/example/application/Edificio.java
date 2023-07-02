@@ -1,6 +1,7 @@
 package com.example.application;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,12 +27,12 @@ public class Edificio {
     @JoinColumn(name = "domicilio_numero", referencedColumnName="numero")
     @JoinColumn(name = "domicilio_ciudad", referencedColumnName="ciudad")
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE) //Fetch Eager porque si no al llamr findAll() no llama a la base de datos y falla. CascadeType.MERGE para propagar los cambios del padre al hijo, en este caso hacer la relacion Edificio Domicilio
     private Domicilio domicilio;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "edificio_id")
-    private List<Dependecia> dependencia;
+    private List<Dependencia> dependencias;
 
 
     public Edificio (String nombre, Domicilio domicilio){
@@ -66,6 +67,15 @@ public class Edificio {
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
     }
+
+   public List<Dependencia> getDependencia() {
+        return dependencias;
+    }
+
+    public void addDependencia(Dependencia dependencia){
+        this.dependencias.add(dependencia);
+    }
+    
 
 
 }

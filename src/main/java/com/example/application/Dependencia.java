@@ -1,27 +1,27 @@
 package com.example.application;
 
 import jakarta.persistence.Id;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "dependencia")
-public class Dependecia {
+public class Dependencia {
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private Long id;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String nombre;
+    private Edificio edificio;
 
-    public Long getId() {
-        return id;
+    public Dependencia(String nombre, Edificio edificio){
+        this.nombre = nombre;
+        this.edificio = edificio;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Dependencia(){
+
     }
 
     public String getNombre() {
@@ -31,5 +31,7 @@ public class Dependecia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    
     
 }
