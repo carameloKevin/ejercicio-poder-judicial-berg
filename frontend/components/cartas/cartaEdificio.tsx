@@ -10,26 +10,24 @@ import { Button } from "@hilla/react-components/Button.js"
 
 
 export function CartaEdificio({
-    dependencia,
+    //dependencia,
     domicilio,
     id,
     nombre,
     }: Edificio){
 
-    const [dependecias, setDependencias] = useState(dependencia);
-
+    //const [dependecias, setDependencias] = useState(dependencia);
 
     return (
         <div className="carta-edificio">
             <ul>
                 <Link to={`/${nombre}`} state={{edificio:{domicilio, id, nombre}}} className="btn btn-primary">{nombre}</Link>
                 <CartaDomicilio {...domicilio}></CartaDomicilio>
-                {dependecias && 
+                {/* { {dependecias && 
                 dependecias.map((dep) => (
                     <p>dep.nombre</p>
-                ))}
-                <DependenciaForm  idEdificio={id} handleSetDependencia={() => setDependencias}/>
-                <Button onClick={()=>{console.log(dependecias)}}></Button>
+                ))} } */}
+                <DependenciaForm  idEdificio={id}/>
             </ul>
         </div>
     )

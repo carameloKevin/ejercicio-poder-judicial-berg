@@ -3,18 +3,17 @@ import { TextField } from "@hilla/react-components/TextField.js";
 import { DependenciaEndpoint, EdificioEndpoint } from "Frontend/generated/endpoints";
 import { useState } from "react"
 
-export function DependenciaForm({idEdificio, handleSetDependencia}: {idEdificio:number, handleSetDependencia:Function}){
+export function DependenciaForm({idEdificio}: {idEdificio:number}){
     
     const [nombreDependencia, setNombreDependencia] = useState("");
     
     async function addDependencia(nombreDependencia:string, id:number){
-        console.log("llegue!")
-        const nuevaDepen = await DependenciaEndpoint.add(nombreDependencia);
-        EdificioEndpoint.addDependenciaToEdifcio(id, nuevaDepen).then(function(nuevoEdificio) {
-            EdificioEndpoint.update(nuevoEdificio);
-        });
         
-        
+        const edificio = await EdificioEndpoint.findById(id);
+        console.log(edificio);
+        console.log("Pase por el edificio")
+        const nuevaDepen = await DependenciaEndpoint.add(nombreDependencia, edificio);
+        console.log(DependenciaEndpoint.findAll());
     }
 
     return (

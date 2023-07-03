@@ -30,6 +30,7 @@ export function IndexView(){
         DependenciaEndpoint.findAll().then(setDependencias);
         console.log(dependecias);
         console.log(edificios);
+        console.log(domicilio);
     }, [])
 
     async function addDomicilio(){
@@ -41,20 +42,22 @@ export function IndexView(){
             setDomicilios([...domicilios, saved]);
         }
     }
-
     async function addEdificio(){
-        const saved = await EdificioEndpoint.add(nombre, domicilio!);   //Asegurarme del ! que hace que typescript confie que es noNull
+        console.log(domicilio)
+        if(domicilio){
+        const saved = await EdificioEndpoint.add(nombre, domicilio);   //Asegurarme del ! que hace que typescript confie que es noNull
         if(saved){
             setEdificios([...edificios, saved]);
         }
     }
-    
-    async function addDependencia(nombreDependencia:string, id:number){
-        const nuevaDepen = await DependenciaEndpoint.add(nombreDependencia);
-        EdificioEndpoint.addDependenciaToEdifcio(id, nuevaDepen);
-        
-        setDependencias([...dependecias, nuevaDepen]);
     }
+    
+    // async function addDependencia(nombreDependencia:string, id:number){
+    //     const nuevaDepen = await DependenciaEndpoint.add(nombreDependencia);
+    //     EdificioEndpoint.addDependenciaToEdifcio(id, nuevaDepen);
+        
+    //     setDependencias([...dependecias, nuevaDepen]);
+    // }
 
 
     return (
@@ -94,6 +97,7 @@ export function IndexView(){
                 {dependecias.map(dep => (
                     <div>
                         <p>{dep.nombre}</p>
+                        <p>Edificio: {dep.edificio?.nombre}</p>
                     </div>
                 ))}
             </div>
