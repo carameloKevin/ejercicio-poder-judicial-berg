@@ -2,6 +2,8 @@
 import { Button } from "@hilla/react-components/Button.js";
 import { TextField } from "@hilla/react-components/TextField.js";
 import { CartaEdificio } from "Frontend/components/cartas/cartaEdificio";
+import { DomicilioForm } from "Frontend/components/forms/domicilioForm";
+import { EdificioForm } from "Frontend/components/forms/edificioForm"
 import Dependencia from "Frontend/generated/com/example/application/Dependencia";
 import Domicilio from "Frontend/generated/com/example/application/Domicilio";
 import Edificio from "Frontend/generated/com/example/application/Edificio";
@@ -14,14 +16,6 @@ export function IndexView(){
     const [domicilios, setDomicilios] = useState<Domicilio[]>([]);
     const [dependecias, setDependencias] = useState<Dependencia[]>([])
     
-    const [edificio, setEdificio] = useState<Edificio>();
-    const [nombre, setNombre] = useState(String);
-
-    const [domicilio, setDomicilio] = useState<Domicilio>();
-    const [calle, setCalle] = useState(String);
-    const [numero, setNumero] = useState(String);
-    const [ciudad, setCiudad] = useState(String);
-    
     const id = 0;
     
     useEffect(() => {
@@ -30,59 +24,24 @@ export function IndexView(){
         DependenciaEndpoint.findAll().then(setDependencias);
         console.log(dependecias);
         console.log(edificios);
-        console.log(domicilio);
     }, [])
-
-    async function addDomicilio(){
-        const saved = await DomicilioEndpoint.add(ciudad, calle, numero);
-        console.log(saved);
-        if(saved){
-            console.log(saved);
-            setDomicilio(saved);
-            setDomicilios([...domicilios, saved]);
-        }
-    }
-    async function addEdificio(){
-        console.log(domicilio)
-        if(domicilio){
-        const saved = await EdificioEndpoint.add(nombre, domicilio);   //Asegurarme del ! que hace que typescript confie que es noNull
-        if(saved){
-            setEdificios([...edificios, saved]);
-        }
-    }
-    }
-    
-    // async function addDependencia(nombreDependencia:string, id:number){
-    //     const nuevaDepen = await DependenciaEndpoint.add(nombreDependencia);
-    //     EdificioEndpoint.addDependenciaToEdifcio(id, nuevaDepen);
-        
-    //     setDependencias([...dependecias, nuevaDepen]);
-    // }
 
 
     return (
         <div className="p-m">
             <h1>Index View Exitoso!</h1>
 
-            <div className="flex gap-s">
-                <TextField value={calle} onChange={e => setCalle(e.target.value)}/>
-                <TextField value={numero} onChange={e => setNumero(e.target.value)}/>
-                <TextField value={ciudad} onChange={e => setCiudad(e.target.value)}/>
-
-                <Button theme="primary" onClick={addDomicilio}>Add Domicilio</Button>
-            </div>
-            <div>
-                <TextField value={nombre} onChange={e => setNombre(e.target.value)}/>   
-                <Button onClick={addEdificio}>agregar edificio</Button>
-            </div>
+            <DomicilioForm />
+            <EdificioForm />
 
             <div>
                 <h2>Edificios</h2>
+                
                 {edificios.map(ed => (
-                    //<CartaEdificio domicilio={ed.domicilio} id={ed.id} nombre={ed.nombre} handleAddDependencia=(()=>{handleAddDependency}) />
                     <CartaEdificio {...ed} />
                 ))}
             </div>
+
             <h2>Domicilios</h2>
             <div>
                 {domicilios.map(domi => (

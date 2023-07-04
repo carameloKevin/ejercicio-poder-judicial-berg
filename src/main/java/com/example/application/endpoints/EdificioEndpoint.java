@@ -47,4 +47,8 @@ public class EdificioEndpoint {
         edificio.addDependencia(dependencia);
         return edificio;
     }
+
+    public void removeEdificio(Edificio edificio){
+        repository.delete(edificio);
+    }
 }

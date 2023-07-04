@@ -8,12 +8,8 @@ export function DependenciaForm({idEdificio}: {idEdificio:number}){
     const [nombreDependencia, setNombreDependencia] = useState("");
     
     async function addDependencia(nombreDependencia:string, id:number){
-        
         const edificio = await EdificioEndpoint.findById(id);
-        console.log(edificio);
-        console.log("Pase por el edificio")
-        const nuevaDepen = await DependenciaEndpoint.add(nombreDependencia, edificio);
-        console.log(DependenciaEndpoint.findAll());
+        DependenciaEndpoint.add(nombreDependencia, edificio);
     }
 
     return (

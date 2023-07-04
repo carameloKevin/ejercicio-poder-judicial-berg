@@ -33,6 +33,8 @@ public class Dependencia {
 
     }
 
+    
+
     public String getNombre() {
         return nombre;
     }
@@ -47,6 +49,14 @@ public class Dependencia {
 
     public void setEdificio(Edificio edificio) {
         this.edificio = edificio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }

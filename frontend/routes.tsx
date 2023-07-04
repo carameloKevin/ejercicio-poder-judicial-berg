@@ -1,6 +1,9 @@
 import { createBrowserRouter, IndexRouteObject, NonIndexRouteObject, useMatches } from 'react-router-dom';
 import { IndexView } from './views';
-import { EdificioView } from './views/edificio';  // Dejar unido a IndexView
+import { EdificioView } from './views/edificio'; 
+import { DomicilioView } from './views/domicilio'; 
+import { DependenciaView } from './views/dependencia';
+import { CartaEdificio } from './components/cartas/cartaEdificio';
 
 export type MenuProps = Readonly<{
   icon?: string;
@@ -30,7 +33,9 @@ export const routes: readonly ViewRouteObject[] = [
   {
     children: [
       { path: '/', element: <IndexView />, handle: { icon: 'globe-solid', title: 'Edificios Judiciales' } },
-      { path: '/:edificio', element:<EdificioView />, handle: { icon: 'globe-solid', title: 'Edificios Judiciales' }}
+      { path: '/edificios', element:<EdificioView />, handle: { icon: 'globe-solid', title: 'Edificios Judiciales' }},
+      { path: '/domicilios', element:<DomicilioView />, handle: { icon: 'globe-solid', title: 'Domicilios Judiciales' }},
+      { path: '/dependencias', element:<DependenciaView />, handle: { icon: 'globe-solid', title: 'Dependencias Judiciales' }}
     ],
   },
 ];

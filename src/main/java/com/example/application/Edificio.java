@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -33,6 +34,7 @@ public class Edificio {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE) //Fetch Eager porque si no al llamr findAll() no llama a la base de datos y falla. CascadeType.MERGE para propagar los cambios del padre al hijo, en este caso hacer la relacion Edificio Domicilio
     private Domicilio domicilio;
 
+    //@JsonIgnoreProperties(value={"dependencia"}, allowSetters = true, allowGetters = true)
     @JsonIgnore
     @OneToMany(mappedBy = "edificio")    //cascade = CascadeType.ALL
     //@JoinColumn(name = "edificio_id")
