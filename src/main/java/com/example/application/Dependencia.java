@@ -31,9 +31,7 @@ public class Dependencia {
 
     public Dependencia(){
 
-    }
-
-    
+    }    
 
     public String getNombre() {
         return nombre;

@@ -21,11 +21,19 @@ public class DomicilioEndpoint {
         return repository.findAll();
     }
 
+    public Domicilio findById(Long id){
+        return repository.findById(id).get();
+    }
+
     public Domicilio add(String ciudad, String calle, String numero){
         return repository.save(new Domicilio(ciudad, calle, numero));
     }
 
-    public Domicilio update(Domicilio edificio){
-        return repository.save(edificio);
+    public Domicilio update(Domicilio domicilio){
+        return repository.save(domicilio);
+    }
+
+    public void remove(Domicilio domicilio){
+        repository.delete(domicilio);
     }
 }

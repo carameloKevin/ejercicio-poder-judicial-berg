@@ -15,10 +15,10 @@ export function DependenciaView(){
     },[])
 
     return (
-        <div>
-            {/* <DependenciaForm /> */}
+        <div className="p-l">
+            <h1>Dependencias</h1>
             {dependencias && dependencias.map((dependencia) => (
-                <CartaDependencia {...dependencia}/>
+                <CartaDependencia key={dependencia.id} dependenciaRecibida={dependencia} stateDepenendencias={dependencias} setStateDependencias={setDependencias}/>
             ))}
             {dependencias?.length==0 && <h2>No hay Dependencias!</h2>}
         </div>

@@ -27,11 +27,8 @@ public class Edificio {
 
     private String nombre;
     
-    @JoinColumn(name = "domicilio_calle", referencedColumnName="calle")
-    @JoinColumn(name = "domicilio_numero", referencedColumnName="numero")
-    @JoinColumn(name = "domicilio_ciudad", referencedColumnName="ciudad")
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE) //Fetch Eager porque si no al llamr findAll() no llama a la base de datos y falla. CascadeType.MERGE para propagar los cambios del padre al hijo, en este caso hacer la relacion Edificio Domicilio
+    @JoinColumn(name = "domicilio_id", referencedColumnName="id")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE) //  //Fetch Eager porque si no al llamr findAll() no llama a la base de datos y falla. CascadeType.MERGE para propagar los cambios del padre al hijo, en este caso hacer la relacion Edificio Domicilio
     private Domicilio domicilio;
 
     //@JsonIgnoreProperties(value={"dependencia"}, allowSetters = true, allowGetters = true)
