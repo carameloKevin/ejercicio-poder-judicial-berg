@@ -18,10 +18,14 @@ export function CartaDomicilio({domicilio, domicilios, handleSetDomicilios}: Pro
 
     async function handlerRemoveDomicilio()
     {
-        const saved = await DomicilioEndpoint.findById(domicilio.id);
-        DomicilioEndpoint.remove(saved)
-        if(handleSetDomicilios){
-            handleSetDomicilios(domicilios?.filter(dom => dom.id != domicilio.id))
+        try{
+            const saved = await DomicilioEndpoint.findById(domicilio.id);
+            await DomicilioEndpoint.remove(saved)
+            if(handleSetDomicilios){
+                handleSetDomicilios(domicilios?.filter(dom => dom.id != domicilio.id))
+            }
+        }catch(e){
+            console.log("Error! - hay algun edificio asociado a este domicilio?")
         }
     }
 

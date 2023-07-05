@@ -1,51 +1,40 @@
-# Custom project from Hilla
+## Ejecutar la aplicacion
+Para ejecutar la aplicacion en la Terminal (Linux) o CMD (Windows), dirigirse a la carpeta donde se descargo y ejecutar `./mvnw` (Linux) o `mvnw` (Windows).
+Automaticamente se deberia abrir el navegador con la URL http://localhost:8080
 
-This project can be used as a starting point to create your own Hilla application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+## Ejercicio
+Desarrollo de la aplicación
+Se necesita desarrollar una aplicación para registrar y consultar Edificios y Dependencias del Poder
+Judicial del Neuquén.
+Cada Edificio está identificado por un ID y tiene los siguientes atributos:
+- nombre, tipo String
+- domicilio tipo String
+A su vez las Dependencias están también identificadas por un ID y poseen los atributos:
+- nombre, tipo String
+- domicilio, tipo String
+Un edificio puede tener una o más dependencias y una dependencia pertenece solo a 1 edificio.
+Se deben agregar los campos necesarios para representar esta relación tanto en la base de datos, como así
+también en el backend uitlizando JPA (ya viene integrado en spring-boot).
+En el frontend, se deberán crear las funcionalidades para administrar los edificios y dependencias (ABM)
+y para consultar los edificios de tal forma que al ingresar en un edificio se pueda visualizar fácilmente las
+dependencias de cada edificio.
+Para dar soporte a la aplicación se deberá crear el frontend y el backend, utilizando una base de datos en
+memoria (para mayor simplicidad).
+Deberán enviar un link al repositorio en donde reside el código fuente de la aplicación creada.
+A su vez, se deberán indicar los pasos a seguir para ejecutar la aplicación (una vez descargada en una pc
+local del Poder Judicial) y poder comprobar el correcto funcionamiento de la misma.
+Se tendrá en cuenta para su evaluación, el tiempo que se tarda en el desarrollo de la misma y la calidad
+del código fuente.
+En cuanto a la tecnología a utilizar para desarrollar la aplicación, la misma deberá ser creada utilizando el
+framework Hilla + React.
 
-## Running the application
+## Decisiones
+- Hice una clase extra de domicilio para no repetir la informacion y tiene una relacion uno a uno con edificio. Un domicilio solo puede estar asociado a un edificio, asi que la BD no permite crear dos edificios en un mismo domicilio
+- Las dependencias dependen de la id del edificio. Si no hay creado un edificio, no se pueden crear dependencias.
+- Se deben eliminar los elementos en prioridad de Dependencia>Edificio>Domicilio, no se eliminan en cascada
 
-The project is a standard Maven project. To run it from the command line,
-type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
-http://localhost:8080 in your browser.
-
-You can also import the project to your IDE of choice as you would with any
-Maven project.
-
-## Deploying to Production
-
-To create a production build, call `mvnw clean package -Pproduction` (Windows),
-or `./mvnw clean package -Pproduction` (Mac & Linux).
-This will build a JAR file with all the dependencies and front-end resources,
-ready to be deployed. The file can be found in the `target` folder after the build completes.
-
-Once the JAR file is built, you can run it using
-`java -jar target/myapp-1.0-SNAPSHOT.jar` (NOTE, replace
-`myapp-1.0-SNAPSHOT.jar` with the name of your jar).
-
-## Project structure
-
-<table style="width:100%; text-align: left;">
-  <tr><th>Directory</th><th>Description</th></tr>
-  <tr><td><code>frontend/</code></td><td>Client-side source directory</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>index.html</code></td><td>HTML template</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>index.ts</code></td><td>Frontend 
-entrypoint, bootstraps a React application</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>routes.tsx</code></td><td>React Router routes definition</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>MainLayout.tsx</code></td><td>Main 
-layout component, contains the navigation menu, uses <a href="https://hilla.dev/docs/react/components/app-layout">
-App Layout</a></td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>views/</code></td><td>UI view 
-components</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>themes/</code></td><td>Custom  
-CSS styles</td></tr>
-  <tr><td><code>src/main/java/&lt;groupId&gt;/</code></td><td>Server-side 
-source directory, contains the server-side Java views</td></tr>
-  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>Application.java</code></td><td>Server entry-point</td></tr>
-</table>
-
-## Useful links
-
-- Read the documentation at [hilla.dev/docs](https://hilla.dev/docs/).
-- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/hilla) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
-- Report issues, create pull requests in [GitHub](https://github.com/vaadin/hilla).
+## Funciones Faltantes
+[ ] Mostrar mas informacion sobre que esta (o no) sucediendo. Principalmente cuando no se puede eliminar alguna entidad porque asociada a otra (mas que un console.log)
+[ ] No mostrar direcciones ya tomadas
+[ ] Busqueda por propiedades
+[ ] Verificacion de tipos de datos (principalmente numero en Domicilio)

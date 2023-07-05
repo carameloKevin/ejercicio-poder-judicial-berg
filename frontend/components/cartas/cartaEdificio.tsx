@@ -28,11 +28,14 @@ export function CartaEdificio({
         EdificioEndpoint.getDependenciasEdificio(edificio.id).then(setDependencias);
     }, [])
 
-    function handleRemoveEdificio(){
-        //const saved = EdificioEndpoint.findById(id);
-        EdificioEndpoint.remove(edificio);
-        if(handleSetEdificio){
-            handleSetEdificio(edificios?.filter(edf => edf.id != edificio.id))
+    async function handleRemoveEdificio(){
+        try{
+            await EdificioEndpoint.remove(edificio);
+            if(handleSetEdificio){
+                handleSetEdificio(edificios?.filter(edf => edf.id != edificio.id))
+            }
+        }catch(e){
+            console.log("Error - Hay alguna dependencia asociada a este edificio?")
         }
     }
 

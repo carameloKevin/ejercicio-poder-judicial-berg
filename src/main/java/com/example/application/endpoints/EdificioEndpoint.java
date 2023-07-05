@@ -51,4 +51,5 @@ public class EdificioEndpoint {
     public void remove(Edificio edificio){
         repository.delete(edificio);
     }
+    
 }

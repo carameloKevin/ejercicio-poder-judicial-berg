@@ -15,9 +15,9 @@ export function CartaDependencia({
     dependenciaRecibida
 }:PropsEdificioForm){
 
-    function handleRemoveDependencia()
+    async function handleRemoveDependencia()
     {
-        DependenciaEndpoint.removeDependencias(dependenciaRecibida)
+        await DependenciaEndpoint.removeDependencias(dependenciaRecibida)
         if(setStateDependencias){
             setStateDependencias(stateDepenendencias?.filter(dep => dep.id != dependenciaRecibida.id))
         }
