@@ -34,7 +34,7 @@ framework Hilla + React.
 - Se deben eliminar los elementos en prioridad de Dependencia>Edificio>Domicilio, no se eliminan en cascada
 
 ## Funciones Faltantes
-[ ] Mostrar mas informacion sobre que esta (o no) sucediendo. Principalmente cuando no se puede eliminar alguna entidad porque asociada a otra (mas que un console.log)
-[ ] No mostrar direcciones ya tomadas
-[ ] Busqueda por propiedades
-[ ] Verificacion de tipos de datos (principalmente numero en Domicilio)
+ - [ ] Mostrar mas informacion sobre que esta (o no) sucediendo. Principalmente cuando no se puede eliminar alguna entidad porque asociada a otra (mas que un console.log)  
+ - [ ] No mostrar direcciones ya tomadas  
+ - [ ] Busqueda por propiedades  
+ - [ ] Verificacion de tipos de datos (principalmente numero en Domicilio)  
